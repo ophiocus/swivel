@@ -1,0 +1,15 @@
+{
+  "name": "swivel",
+  "description": "Swivel, a Claude Code skill that keeps a long session's main thread recallable.",
+  "owner": {
+    "name": "Carlos Santana",
+    "url": "https://github.com/ophiocus"
+  },
+  "plugins": [
+    {
+      "name": "swivel",
+      "source": "./",
+      "description": "git stash, for attention: a core lane, injected lanes, and stashes that survive a cold read."
+    }
+  ]
+}

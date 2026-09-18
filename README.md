@@ -24,18 +24,19 @@ and come back to exactly where you were.
 
 ## Install
 
-The skill is one file, `SKILL.md`. Put it where Claude Code looks for personal skills.
+Swivel is a Claude Code plugin, and this repo is also its marketplace. In Claude Code:
 
-```bash
-git clone git@github.com:ophiocus/swivel.git ~/.claude/skills/swivel
+```
+/plugin marketplace add ophiocus/swivel
+/plugin install swivel@swivel
 ```
 
-On Windows, clone anywhere and link it in:
+`/plugin` then handles updates. Releases are tagged (`v0.1.0`, …) and the version lives in
+`.claude-plugin/plugin.json`.
 
-```powershell
-git clone git@github.com:ophiocus/swivel.git I:\swivel
-New-Item -ItemType Junction -Path "$HOME\.claude\skills\swivel" -Target I:\swivel
-```
+Without the plugin system, the skill is one file, `skills/swivel/SKILL.md`. Copy that folder
+into `~/.claude/skills/` (Claude Code), or zip it and upload it as a custom skill in the
+Claude apps.
 
 ## Use
 
@@ -72,6 +73,16 @@ workspaces. In brief:
 
 The audit also contains a pre-registered, three-arm experiment plan for measuring token
 cost per prompt properly. The scripts that produced the numbers are in [`bench/`](bench/).
+
+## Layout
+
+```
+.claude-plugin/plugin.json       plugin manifest (name, version)
+.claude-plugin/marketplace.json  this repo as a one-plugin marketplace
+skills/swivel/SKILL.md           the skill itself
+docs/AUDIT.md                    claims, anatomy, tests, token-bench plan
+bench/swivel_usage.py            reproduces the audit's numbers
+```
 
 ## Known gaps
 

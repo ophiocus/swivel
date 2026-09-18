@@ -1,0 +1,14 @@
+{
+  "name": "swivel",
+  "displayName": "Swivel",
+  "version": "0.1.0",
+  "description": "git stash, for attention: keeps a long session's core theme recallable when other threads intrude, and stashes in-flight state to <project>/.swivel/.",
+  "author": {
+    "name": "Carlos Santana",
+    "url": "https://github.com/ophiocus"
+  },
+  "homepage": "https://github.com/ophiocus/swivel",
+  "repository": "https://github.com/ophiocus/swivel",
+  "license": "MIT",
+  "keywords": ["focus", "context-switching", "stash", "long-sessions", "workflow"]
+}
