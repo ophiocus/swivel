@@ -225,6 +225,10 @@ each compaction boundary.
 - **55 compactions, 3 followed by a swivel read.** 137 lane reads against 206 writes.
 - In practice the return runs on the compaction summary, not the stash. Lanes are
   written far more than they're restored, and nothing triggers a reload after compaction.
+- **Addressed in v0.1.2**: "a compaction is a cache miss — reload" is now a rule, so the
+  lanes are read back at the one moment the transcript can no longer supply the state.
+  Whether it changes the 3-in-55 ratio is itself measurable — re-run
+  `bench/swivel_usage.py` and compare `reloads_after_compaction` before and after.
 
 ### T3: Does per-prompt context shrink after swivel loads? (C∅ refuted as practiced)
 

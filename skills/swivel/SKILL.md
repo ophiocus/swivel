@@ -126,6 +126,11 @@ A stash is only worth writing if it survives a cold read a week later. Every one
   live source in the same turn you write it. A stale stash is worse than none.
 - **Pop means re-verify.** On restore, re-check anything time-sensitive before acting on
   it — the world moved while the stash sat. State plainly what changed since.
+- **A compaction is a cache miss — reload.** When the conversation has just been compacted,
+  the transcript's detail is gone and a lossy summary stands in its place; the lanes on disk
+  are then the only full copy of the session's state. Before the next action, read `INDEX.md`
+  and the active lane, and say in one line what the core is and what its next action was.
+  Once per compaction, not once per turn.
 - **Never delete.** `drop` marks; it does not remove. The stack doubles as a session log.
 - **One stash per focus, not per interruption.** A two-minute detour does not earn one.
 - **The canonical tracker still wins.** If the project keeps live status somewhere

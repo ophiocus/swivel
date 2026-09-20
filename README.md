@@ -19,6 +19,8 @@ and come back to exactly where you were.
 - **A three-question test** for each new frame: where did it come from, does it have its
   own counterparty and clock, and does the core move if it's done perfectly?
 - **Depth tracking.** At two levels of nesting it stops and re-states the core.
+- **Reload after a compaction.** When the conversation is compacted and its detail is
+  dropped, the lanes are the only full copy left, so they're read back before anything else.
 - **Stashes that survive a cold read**: evidenced state (SHAs, URLs, message ids), whose
   ball each thread is in, the next physical action, landmines, and a computed timestamp.
 
@@ -94,7 +96,6 @@ From the audit, open as issues-to-be:
 - There's no stash filename convention (real use invented `stash-00N.md`).
 - There's no invariant that exactly one lane is active.
 - There's no `swivel core` command to re-state the theme, though users add one.
-- Nothing reloads the active lane after a context compaction.
 
 ## Licence
 
