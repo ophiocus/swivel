@@ -1,8 +1,8 @@
 {
   "name": "swivel",
   "displayName": "Swivel",
-  "version": "0.1.0",
-  "description": "git stash, for attention: keeps a long session's core theme recallable when other threads intrude, and stashes in-flight state to <project>/.swivel/.",
+  "version": "0.1.1",
+  "description": "git stash, for attention: keeps a long session's core theme recallable when other threads intrude, and stashes in-flight state beside the project's Claude Code memory.",
   "author": {
     "name": "Carlos Santana",
     "url": "https://github.com/ophiocus"

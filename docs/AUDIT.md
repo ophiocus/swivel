@@ -51,7 +51,7 @@ out every command with its ordinary Read, Write and Edit tools. The file has six
 |---|---|
 | frontmatter | name, plus a trigger description covering six phrases and one semantic trigger |
 | doctrine | core vs injected, the three-question test, workspace gravity, nesting depth, five rules |
-| storage | `<project>/.swivel/`: `lane-*.md`, `INDEX.md`, `CASE-*.md` |
+| storage | `lane-*.md`, `INDEX.md`, `CASE-*.md`. At audit time these sat in `<project>/.swivel/`; v0.1.1 moved them to `~/.claude/projects/<slug>/swivel/`, out of the code tree |
 | commands | push, pop, apply, list, show N, drop N; "swivel to X" means push, then switch |
 | stash contract | headline, evidenced state, whose ball, next action, landmines, computed timestamp |
 | rules + format | verify first, re-verify on pop, never delete, one stash per focus, tracker wins |

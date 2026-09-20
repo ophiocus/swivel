@@ -52,9 +52,11 @@ Claude apps.
 It also triggers on "stash this", "park this and switch", "what was I doing" and
 "what are we actually doing".
 
-State lives in `<project>/.swivel/`: `INDEX.md`, one `lane-*.md` per lane, and any
-`CASE-*.md` precedents you choose to keep. It's plain Markdown, so you can read it, diff
-it and commit it (or gitignore it).
+State lives in Claude Code's own per-project folder, beside that project's memory:
+`~/.claude/projects/<project-slug>/swivel/` — `INDEX.md`, one `lane-*.md` per lane, and any
+`CASE-*.md` precedents you choose to keep. It's plain Markdown, so you can read and diff it.
+Nothing is written into your working tree, so lanes never appear in `git status` and can't
+be committed by accident.
 
 ## Does it work?
 

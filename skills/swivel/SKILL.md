@@ -68,7 +68,16 @@ longer in view. On reaching depth 2, stop and re-state the core before continuin
 
 ## Storage
 
-Lanes live in `<project>/.swivel/`.
+Lanes live in Claude Code's own per-project folder, **never inside the working tree**:
+`~/.claude/projects/<project-slug>/swivel/` (on Windows,
+`C:\Users\<user>\.claude\projects\<project-slug>\swivel\`).
+
+The slug is the one Claude Code already uses for this working directory — the folder that
+holds this project's `memory/`. Find that folder rather than inventing a name for it, and
+create `swivel/` inside it on first write.
+
+A `.swivel/` directory in the project itself is a bug: it lands in the user's code tree,
+shows up in `git status`, and gets committed by accident.
 
 - `lane-<name>.md` — **exactly one is marked CORE**: the session's theme. Every other
   lane is injected, and carries what it was injected off and when.
