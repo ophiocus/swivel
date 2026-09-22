@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640"
+     role="img" aria-label="swivel">
+  <title>swivel</title>
+  <!-- v2. Same seven forms as swivel-mark.svg — no shape was added to get the volume.
+       Depth now comes from feSpecularLighting reading each shape's own alpha (a real
+       bevel, not a painted highlight), paired contact + ambient shadows instead of one
+       soft blob, and inner shadows that incise the slots. The wash of v1 is gone: the
+       light-pool ellipse and sheen rect were deleted and their job handed to the tile
+       gradient and a vignette. -->
+  <defs>
+    <linearGradient id="tileFace" x1="0.05" y1="0" x2="0.75" y2="1">
+      <stop offset="0"    stop-color="#51545D"/>
+      <stop offset="0.22" stop-color="#383B42"/>
+      <stop offset="0.62" stop-color="#232429"/>
+      <stop offset="1"    stop-color="#121316"/>
+    </linearGradient>
+
+    <linearGradient id="tileRim" x1="0.92" y1="0.02" x2="0.28" y2="1">
+      <stop offset="0"    stop-color="#B9BECB" stop-opacity="0.9"/>
+      <stop offset="0.28" stop-color="#8A8D96" stop-opacity="0.15"/>
+      <stop offset="0.75" stop-color="#000000" stop-opacity="0.5"/>
+      <stop offset="1"    stop-color="#000000" stop-opacity="0.7"/>
+    </linearGradient>
+
+    <linearGradient id="laneDim" x1="0.1" y1="0" x2="0.35" y2="1">
+      <stop offset="0"    stop-color="#4B4E57"/>
+      <stop offset="0.55" stop-color="#3A3C43"/>
+      <stop offset="1"    stop-color="#26272C"/>
+    </linearGradient>
+
+    <linearGradient id="laneGold" x1="0.1" y1="0" x2="0.4" y2="1">
+      <stop offset="0"    stop-color="#9E6510"/>
+      <stop offset="0.28" stop-color="#D2921F"/>
+      <stop offset="0.7"  stop-color="#F5BC52"/>
+      <stop offset="1"    stop-color="#FFE7AE"/>
+    </linearGradient>
+
+    <linearGradient id="ringFace" x1="0.15" y1="0.05" x2="0.8" y2="1">
+      <stop offset="0"    stop-color="#FFFBEC"/>
+      <stop offset="0.38" stop-color="#F9D797"/>
+      <stop offset="0.75" stop-color="#D9A94E"/>
+      <stop offset="1"    stop-color="#A8752A"/>
+    </linearGradient>
+
+    <linearGradient id="slotFloor" x1="0" y1="0" x2="0.1" y2="1">
+      <stop offset="0"    stop-color="#0D0E11"/>
+      <stop offset="0.55" stop-color="#191A1E"/>
+      <stop offset="1"    stop-color="#4A4D55"/>
+    </linearGradient>
+
+    <radialGradient id="boreFloor" cx="0.36" cy="0.28" r="0.9">
+      <stop offset="0"    stop-color="#0B0C0E"/>
+      <stop offset="0.62" stop-color="#17181C"/>
+      <stop offset="1"    stop-color="#5A5E68"/>
+    </radialGradient>
+
+    <linearGradient id="boreRim" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0"    stop-color="#FFF6D8" stop-opacity="1"/>
+      <stop offset="0.46" stop-color="#FFF6D8" stop-opacity="0.3"/>
+      <stop offset="1"    stop-color="#000000" stop-opacity="0.55"/>
+    </linearGradient>
+
+    <radialGradient id="castShadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0"    stop-color="#000000" stop-opacity="0.7"/>
+      <stop offset="0.45" stop-color="#000000" stop-opacity="0.34"/>
+      <stop offset="1"    stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- real bevel: blur the shape's own alpha into a height field, light it, clip back -->
+    <filter id="bevelDim" x="-45%" y="-45%" width="200%" height="210%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="h"/>
+      <feSpecularLighting in="h" surfaceScale="4" specularConstant="0.42"
+                          specularExponent="34" lighting-color="#AEB6C6" result="s">
+        <feDistantLight azimuth="300" elevation="54"/>
+      </feSpecularLighting>
+      <feComposite in="s" in2="SourceAlpha" operator="in" result="sc"/>
+      <feComposite in="SourceGraphic" in2="sc" operator="arithmetic"
+                   k1="0" k2="1" k3="1" k4="0" result="lit"/>
+      <feDropShadow in="lit" dx="-3" dy="3" stdDeviation="2.5"
+                    flood-color="#000000" flood-opacity="0.8" result="contact"/>
+      <feDropShadow in="contact" dx="-4" dy="13" stdDeviation="13"
+                    flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+
+    <filter id="bevelGold" x="-50%" y="-50%" width="210%" height="220%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="h"/>
+      <feSpecularLighting in="h" surfaceScale="5" specularConstant="0.62"
+                          specularExponent="30" lighting-color="#FFE9B8" result="s">
+        <feDistantLight azimuth="300" elevation="52"/>
+      </feSpecularLighting>
+      <feComposite in="s" in2="SourceAlpha" operator="in" result="sc"/>
+      <feComposite in="SourceGraphic" in2="sc" operator="arithmetic"
+                   k1="0" k2="1" k3="1" k4="0" result="lit"/>
+      <feDropShadow in="lit" dx="-3" dy="3" stdDeviation="2.5"
+                    flood-color="#000000" flood-opacity="0.85" result="contact"/>
+      <feDropShadow in="contact" dx="-4" dy="14" stdDeviation="14"
+                    flood-color="#000000" flood-opacity="0.5" result="ambient"/>
+      <!-- bloom kept tight and low so it accents the lane instead of washing the tile -->
+      <feDropShadow in="ambient" dx="0" dy="0" stdDeviation="11"
+                    flood-color="#F0B347" flood-opacity="0.3"/>
+    </filter>
+
+    <filter id="bevelRing" x="-55%" y="-55%" width="220%" height="220%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="h"/>
+      <feSpecularLighting in="h" surfaceScale="6" specularConstant="0.7"
+                          specularExponent="26" lighting-color="#FFF4D2" result="s">
+        <feDistantLight azimuth="300" elevation="50"/>
+      </feSpecularLighting>
+      <feComposite in="s" in2="SourceAlpha" operator="in" result="sc"/>
+      <feComposite in="SourceGraphic" in2="sc" operator="arithmetic"
+                   k1="0" k2="1" k3="1" k4="0" result="lit"/>
+      <feDropShadow in="lit" dx="-3" dy="4" stdDeviation="3"
+                    flood-color="#000000" flood-opacity="0.85" result="contact"/>
+      <feDropShadow in="contact" dx="-4" dy="14" stdDeviation="13"
+                    flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+
+    <!-- inner shadow: the slot floor sits below the surface -->
+    <filter id="incise" x="-40%" y="-40%" width="180%" height="200%">
+      <feOffset in="SourceAlpha" dx="0" dy="4" result="o"/>
+      <feGaussianBlur in="o" stdDeviation="4" result="ob"/>
+      <feComposite in="SourceGraphic" in2="ob" operator="out" result="rim"/>
+      <feFlood flood-color="#000000" flood-opacity="0.9" result="c"/>
+      <feComposite in="c" in2="rim" operator="in" result="ish"/>
+      <feComposite in="ish" in2="SourceGraphic" operator="over"/>
+    </filter>
+
+    <!-- vignette: darkens the tile's own edges from inside, no extra shape -->
+    <filter id="vignette" x="-10%" y="-10%" width="120%" height="120%">
+      <feOffset in="SourceAlpha" dx="0" dy="0" result="o"/>
+      <feGaussianBlur in="o" stdDeviation="30" result="ob"/>
+      <feComposite in="SourceGraphic" in2="ob" operator="out" result="rim"/>
+      <feFlood flood-color="#000000" flood-opacity="0.6" result="c"/>
+      <feComposite in="c" in2="rim" operator="in" result="ish"/>
+      <feComposite in="ish" in2="SourceGraphic" operator="over"/>
+    </filter>
+
+    <clipPath id="tileClip">
+      <rect x="64" y="64" width="512" height="512" rx="112" ry="112"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="320" cy="600" rx="228" ry="30" fill="url(#castShadow)"/>
+
+  <rect x="64" y="64" width="512" height="512" rx="112" ry="112"
+        fill="url(#tileFace)" stroke="url(#tileRim)" stroke-width="3"
+        filter="url(#vignette)"/>
+
+  <g clip-path="url(#tileClip)">
+    <!-- uniform scale about the composition centre: every internal ratio,
+         including the gap between the two lanes, is untouched -->
+    <g transform="translate(-21.66 -41.09) scale(1.0795)">
+    <rect x="138" y="154" width="361" height="145" rx="42"
+          fill="url(#laneDim)" stroke="#A7ADBB" stroke-opacity="0.2" stroke-width="2"
+          filter="url(#bevelDim)"/>
+    <rect x="186" y="212" width="266" height="28" rx="14"
+          fill="url(#slotFloor)" filter="url(#incise)"/>
+
+    <rect x="177" y="351" width="347" height="153" rx="44"
+          fill="url(#laneGold)" stroke="#FFEBB8" stroke-opacity="0.55" stroke-width="2"
+          filter="url(#bevelGold)"/>
+    <rect x="296" y="414" width="158" height="28" rx="14"
+          fill="url(#slotFloor)" filter="url(#incise)"/>
+
+    <circle cx="197" cy="427" r="88"
+            fill="url(#ringFace)" stroke="#FFFBEA" stroke-opacity="0.55" stroke-width="2"
+            filter="url(#bevelRing)"/>
+    <circle cx="197" cy="427" r="30"
+            fill="url(#boreFloor)" filter="url(#incise)"/>
+    <circle cx="197" cy="427" r="30" fill="none"
+            stroke="url(#boreRim)" stroke-width="5"/>
+    </g>
+  </g>
+</svg>

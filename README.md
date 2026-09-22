@@ -1,3 +1,5 @@
+![swivel](assets/banner.png)
+
 # swivel
 
 **git stash, for attention.** A [Claude Code](https://claude.com/claude-code) skill that
